@@ -4,9 +4,12 @@
   "description": "PET-Project",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node tools/server.js",
-    "dev": "npx webpack-dev-server --open --color --config ./config/webpack.config.dev.js",
-    "build": "npx webpack --config ./config/webpack.config.prod.js",
+    "setEnv:dev": "cross-env NODE_ENV=development",
+    "setEnv:prod": "cross-env NODE_ENV=production",
+    "server": "babel-node tools/server.js",
+    "dev": "npx webpack-dev-server --hot --inline --open --color --config ./config/webpack.config.dev.js",
+    "start": "yarn setEnv:dev && yarn dev",
+    "build": "yarn setEnv:prod && npx webpack --config ./config/webpack.config.prod.js",
     "lint": "eslint **/*.js"
   },
   "author": "Polomkin Anton",
@@ -37,6 +40,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.1.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
