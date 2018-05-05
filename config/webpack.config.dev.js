@@ -1,35 +1,62 @@
-import webpack from 'webpack';
-import path from 'path';
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-export default {
-    debug: true,
-    devtool: 'inline-source-map',
-    noInfo: false,
+const VENDOR_LIBS = [
+    'react', 'react-dom', 'mobx', 'mobx-react', 'recompose'
+]
 
-    entry: [
-        path.resolve(__dirname, 'src/index')
-    ],
-    target: 'web',
+module.exports = {
+
+    entry: {
+        bundle: './js/index.jsx',
+        vendor: VENDOR_LIBS
+    },
+
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/',
-        filename: 'bundle.js'
+        path: `${__dirname}/public`,
+        filename: '[name].[chunkhash].js',
     },
+
+    devtool: 'inline-source-map',
+
     devServer: {
-        contentBase: './src'
+        contentBase: '../src/',
+        publicPath: '/',
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-    ],
+
     module: {
-        loaders: [
-            {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel-loader', 'eslint-loader']},
-            {test: /(\.css)$/, loaders: ['style', 'css']},
-            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-            {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
-            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+        rules: [
+            {
+                test: /\.jsx?$/,
+                use: ['babel-loader'],
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            sourceMap: true,
+                            localIdentName: '[path]--[name]-[local]--[hash:base64:5]',
+                        },
+                    }],
+                }),
+            },
         ]
-    }
-};
+    },
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'The Blog (PET Project)',
+            filename: 'index.html',
+            chunks: ['index'],
+            template: './src/templates/index.html',
+            inject: true,
+        }),
+    ]
+}
