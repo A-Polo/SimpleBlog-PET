@@ -1,5 +1,5 @@
 .idea
 node_modules
 yarn-error.log
-dist
+bundle
 coverage
