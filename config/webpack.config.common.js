@@ -7,7 +7,7 @@ module.exports = {
   },
 
   output: {
-    filename: 'scripts/[name].bundle.js',
+    filename: 'scripts/[name].js',
     path: path.resolve(__dirname, '../bundle'),
   },
   module: {
@@ -19,11 +19,13 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: [path.resolve(__dirname, '../src'), 'node_modules'],
   },
   plugins: [new HtmlWebpackPlugin({
     title: 'The Blog Pet Project',
+    filename: 'index.html',
+    chunks: ['index'],
     template: './src/templates/index.html',
-    inject: false,
-    bundleName: 'index.bundle.js',
+    inject: true,
   })],
 };

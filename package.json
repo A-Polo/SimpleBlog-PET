@@ -10,7 +10,8 @@
     "dev": "npx webpack-dev-server --hot --inline --open --color --config ./config/webpack.config.dev.js",
     "start": "yarn setEnv:dev && yarn dev",
     "build": "yarn setEnv:prod && npx webpack --config ./config/webpack.config.prod.js",
-    "lint": "eslint **/*.js"
+    "lint": "npx eslint . --ext .js,.jsx --fix",
+    "test": "npx jest"
   },
   "author": "Polomkin Anton",
   "license": "MIT",
