@@ -30,7 +30,8 @@ module.exports = {
           options: {
             sourceMap: true,
           },
-        }, {
+        },
+        {
           loader: 'sass-loader',
           options: {
             sourceMap: true,
@@ -40,6 +41,7 @@ module.exports = {
           loader: 'sass-resources-loader',
           options: {
             resources: [
+              path.resolve(__dirname, '../src/assets/styles/variables/*.scss'),
               path.resolve(__dirname, '../src/assets/styles/_resources.scss'),
             ],
           },

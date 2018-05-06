@@ -10,7 +10,9 @@
     "dev": "npx webpack-dev-server --hot --inline --open --color --config ./config/webpack.config.dev.js",
     "start": "yarn setEnv:dev && yarn dev",
     "build": "yarn setEnv:prod && npx webpack --config ./config/webpack.config.prod.js",
-    "lint": "npx eslint . --ext .js,.jsx --fix",
+    "lint:js": "npx eslint . --ext .js,.jsx --fix",
+    "lint:css": "npx stylelint **/*.scss --fix",
+    "lint": "yarn lint:js || yarn lint:css",
     "test": "npx jest"
   },
   "author": "Polomkin Anton",
@@ -62,6 +64,9 @@
     "sass-loader": "^7.0.1",
     "sass-resources-loader": "^1.3.3",
     "style-loader": "^0.21.0",
+    "stylelint": "^9.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^0.8.1",
     "webpack-cli": "^2.1.2",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2"
