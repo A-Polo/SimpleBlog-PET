@@ -13,6 +13,7 @@
         "devDependencies": [
           "./config/*.js",
           "postcss.config.js",
+          "**/__tests__/**",
           "src/support/setupTests.js"
         ]
       }

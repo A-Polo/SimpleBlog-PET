@@ -36,7 +36,14 @@ module.exports = {
             sourceMap: true,
           },
         },
-        'postcss-loader',
+        {
+          loader: 'sass-resources-loader',
+          options: {
+            resources: [
+              path.resolve(__dirname, '../src/assets/styles/_resources.scss'),
+            ],
+          },
+        }, 'postcss-loader',
         ],
       }),
     }],
