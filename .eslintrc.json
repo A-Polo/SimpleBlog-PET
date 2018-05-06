@@ -1,7 +1,17 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
-  "globals": {
-    "document": true
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "./config/*.js",
+          "postcss.config.js",
+          "src/support/setupTests.js"
+        ]
+      }
+    ],
+    "import/no-unresolved": "off"
   }
 }
