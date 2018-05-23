@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Button matches shapshot 1`] = `
+exports[`components/Button matches snapshot 1`] = `
 <button
   className="Button"
   disabled={false}

@@ -20,7 +20,7 @@ describe('components/Button', () => {
     });
   });
 
-  it('matches shapshot', () => {
+  it('matches snapshot', () => {
     const wrapper = shallow(<Button {...testProps}>Click me</Button>);
     expect(wrapper).toMatchSnapshot();
   });
