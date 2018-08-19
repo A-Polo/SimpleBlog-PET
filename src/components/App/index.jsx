@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet, { ThemeProvider } from 'react-jss';
-import theme from '../../assets/theme/theme';
-import Header from '../Header';
+
+import themeStyles from '../../assets/theme/theme';
 import '../../assets/styles/global.scss';
+
+import Header from '../Header';
+import BlogContainer from '../BlogContainer';
 
 const styles = theme => ({
   app: {
@@ -17,17 +20,18 @@ const styles = theme => ({
 const App = ({ classes }) => (
   <div className={classes.app}>
     <Header />
+    <BlogContainer />
   </div>
 );
 
 const StyleComp = injectSheet(styles)(App);
 
 App.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default () => (
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={themeStyles}>
     <StyleComp />
   </ThemeProvider>
 );
