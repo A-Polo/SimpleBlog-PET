@@ -1,4 +1,4 @@
-const theme = {
+const themeStyles = {
   white: '#fff',
   colorBase: '#c4c4c4',
   headerBackground: '#32B2C4',
@@ -10,4 +10,4 @@ const theme = {
   baseSpace: 15,
 };
 
-export default theme;
+export default themeStyles;
