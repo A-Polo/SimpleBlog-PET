@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Provider } from 'mobx-react';
 import injectSheet from 'react-jss';
 import styles from './styles';
 
+import RootStore from './stores';
+import BlogContainerContent from './BlogContainerContent';
+
+const rootStore = new RootStore();
 
 const BlogContainer = ({ classes }) => (
-  <div className={classes.BlogContainer}>Blog Container will be here</div>
+  <Provider store={rootStore}>
+    <BlogContainerContent classes={classes} />
+  </Provider>
 );
 
 BlogContainer.propTypes = {
