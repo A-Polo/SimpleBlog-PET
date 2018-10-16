@@ -5,24 +5,30 @@ import injectSheet from 'react-jss';
 import styles from './styles';
 
 const enhance = compose(withHandlers({
-  onKeyPress: ({ setMessage }) => (event) => {
+  onKeyPress: ({ onSubmit }) => (event) => {
     if (event.keyCode === 13) {
-      setMessage(event.target.value);
+      onSubmit();
     }
   },
 }));
 
-const TextField = ({ classes, onKeyPress }) => (
+const TextField = ({
+  classes, onKeyPress, setMessage, message,
+}) => (
   <input
     className={classes.textField}
     onKeyDown={onKeyPress}
     placeholder="Enter your point here"
+    onChange={e => setMessage(e.target.value)}
+    value={message}
   />
 );
 
 TextField.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   onKeyPress: PropTypes.func.isRequired,
+  setMessage: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
 };
 
 export default enhance(injectSheet(styles)(TextField));

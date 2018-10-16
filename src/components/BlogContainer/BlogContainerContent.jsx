@@ -11,22 +11,35 @@ const enhance = compose(
     store: userStore,
   })),
   withHandlers({
-    setMessage: props => (value) => {
-      props.store.setField(value);
+    setMessage: ({ store }) => (value) => {
+      store.setField(value);
+    },
+    onSubmit: ({ store }) => () => {
+      store.onSubmit();
     },
   }),
   observer,
 );
 
-const BlogContainerContent = ({ classes, setMessage }) => (
+const BlogContainerContent = ({
+  classes, setMessage, store, onSubmit,
+}) => (
   <div className={classes.BlogContainer}>
-    <TextField setMessage={setMessage} />
+    <TextField
+      setMessage={setMessage}
+      onSubmit={onSubmit}
+      message={store.message}
+    />
   </div>
 );
 
 BlogContainerContent.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
+  store: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+  }).isRequired,
   setMessage: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 
