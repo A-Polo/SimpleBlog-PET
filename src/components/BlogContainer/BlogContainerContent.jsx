@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { compose, withProps, withHandlers } from 'recompose';
 
+import BlogContainerPost from './BlogContainerPost';
 import TextField from '../Shared/TextField';
 
 const enhance = compose(
@@ -24,12 +25,13 @@ const enhance = compose(
 const BlogContainerContent = ({
   classes, setMessage, store, onSubmit,
 }) => (
-  <div className={classes.BlogContainer}>
+  <div className={classes.blogContainer}>
     <TextField
       setMessage={setMessage}
       onSubmit={onSubmit}
       message={store.message}
     />
+    <BlogContainerPost messages={store.messages} />
   </div>
 );
 

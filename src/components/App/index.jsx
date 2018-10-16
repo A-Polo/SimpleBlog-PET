@@ -13,7 +13,8 @@ const styles = theme => ({
     background: 'rgba(196,196,196,0.1)',
     display: theme.flex,
     flexDirection: theme.direction,
-    height: '100vh',
+    height: '100%',
+    overflow: 'auto',
   },
 });
 
